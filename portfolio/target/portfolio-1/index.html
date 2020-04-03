@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>My Portfolio</title>
+    <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXKIRvUP_xS3KYLSHKs5ALbj9vMBmr_VQ&callback=initMap"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body onload="createMap()">
+    <div id="map-rwanda"></div>
+    <p>This page shows a Google Map!</p>
+  </body>
+  <body>
+    <div id="content">
+      <h1>Naomi Amuzie's Portfolio</h1>
+      <p>Click here to learn some unique things about me:</p>
+      <button onclick="addRandomGreeting()">Some fun facts!</button>
+      <div id="greeting-container"></div>
+      <p> I am a sophomore at Pomona College studying 
+          Computer Science and Africana Studies. I hail from a 
+          Nigerian household in Houston, TX. I am passionate 
+          about creating social structural changes that liberate and 
+          benefit the livelihoods of everyone. I enjoy having 
+          conversations about analyzing and understanding morality, 
+          society, and humanity. I love playing/watching volleyball and 
+          reading op-eds. Fav TV Shows include Black Mirror, Sherlock, Big
+          Little Lies, and The Handmaid's Tale. </p>
+      <img class="resize" alt = "selfie/photo of Naomi" src="/images/ADEC36D4-5273-4327-AB8D-2BBD98FA41E2.JPG">
+      <p> Houston, TX taken downtown.</p>
+    <img class="resize" alt = "Downtown Houston" src="/images/IMG_0523.JPG" >
+    <p> I am a QuestBridge Scholar and Match to Pomona. </p>
+    <img class="resize" alt = "Wuest/FLI on campus." src="/images/IMG_3073.JPG">
+      <p> Sunny days in Claremont :)</p>
+        <img class="resize" alt="autumn in Claremont through the fence" src="/images/IMG_0430.jpg">
+        <img class="resize" alt="Big Bridges from Marston Quad" src="/images/IMG_0472.jpg" >
+        <img class="resize" alt="lawn at Scripps College" src="/images/IMG_2924.JPG" >
+        <img class="resize" alt="sidewalk behind Mudd-Blaisdell" src="/images/IMG_3094.jpg" >
+        <img class="resize" alt="Frary in the fall" src="/images/IMG_3374.jpg" >
+      <p>I enjoy immersing myself in different cultures through traveling because 
+      it exposes me to different philosophies, norms, and histories 
+      beyond my personal experiences. It allows a space to question and compare the legitimacy of
+       notions I've held through my perspective. Though I am a low-income student,
+        I've been fortunate through the generosity of educational programs to travel to Peru, Cuba, and Rwanda. 
+        Each experience challenged me worldview, made me ponder my place in the world, and understand the effects 
+        of structures and history that stretch beyond arbitrary lines. </p>
+      <img class="resize" alt="sunset in Rwanda" src="/images/IMG_8387.jpg" >
+     <img class="resize" alt="field near Rwanda's National Park" src="/images/IMG_8241.jpg">
+     <img class="resize" alt="quote of Paul Kagame" src="/images/IMG_8486.jpg" >
+     <p> My most recent trip abroad to Rwanda before my first-year in college. </p>
+     <p><i> "Although “credo” means “I believe”, at this point I am not sure what to believe. 
+I once stated in a Credo long ago “[Rwanda’s] strength and humility made me ponder—and even consider the greater ends forgiveness can impose on humanity.”
+ My mind sees the practicality behind Gacaca—that it is perhaps the best method for a country eager to rebuild its communities and restore the relationships that was once the backbone of its culture and society. I can understand the reasoning behind the willingness to forgive—that it can give peace of mind and the space to be vulnerable for strength and growth. But my heart feels like forgiveness may not be enough to fill the gaps left empty in places that where once gatherings of love, eerie emptiness that quakes at the thought of memories, and a soul that was once full and filled with content for life and purpose.
+But perhaps forgiveness may just be just a peace of mind and a piece of strength to move forward." - 8/10/18 </i></p>
+<p>All pictures taken by me except the QuestBridge photo! </p>
+      <p>Click <a href="https://www.linkedin.com/in/naomi-amuzie/">here</a> for my LinkedIn profile. </p>
+      <p>Click <a href="https://github.com/ncaa2018">here</a> for my GitHub profile. </p>
+    </div>
+  </body>
+
+
+    <body>
+    <div id="content">
+
+      <h1>Add a comment</h1>
+      <form action="/data" method="POST">
+      <p>Add comment:</p>
+      <textarea rows="5" cols="80" name="comment"></textarea>
+      <br/><br/>
+      <input type="submit" />
+      </form>
+
+      <p> Comments </p>
+      <body onload="getComments()">
+      <div id="comments-container"></div>
+
+    </div>
+  </body>
+  
+</html>
