@@ -21,7 +21,7 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
-import com.google.sps.data.Comment;
+import com.google.sps.data.Review;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,18 +44,18 @@ public class DataServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
-    List<Comment> comments = new ArrayList<>();
+    List<Review> reviews = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
       long id = entity.getKey().getId();
-      String newComment = (String) entity.getProperty("newComment");
+      String newReview = (String) entity.getProperty("newReview");
       long time = (long) entity.getProperty("time");
 
-      Comment comment = new Comment(id, newComment, time); //creating different entities/comments from datastore to then load
-      comments.add(comment);
+      Review review = new Review(id, text, time, age, race, conditions, hospitalName); //creating different entities/comments from datastore to then load
+      reviews.add(review);
     }
 
     Gson gson = new Gson();
-    String json = gson.toJson(comments);
+    String json = gson.toJson(reviews);
 
     response.setContentType("application/json;");
     response.getWriter().println(json);
@@ -67,16 +67,17 @@ public class DataServlet extends HttpServlet {
     
 
     // Get the input from the comment textbox and the time the comment was made
-    String newComment = getParameter(request, "comment", "");
+    String newReview = getParameter(request, "review", "");
     long time = System.currentTimeMillis();
 
     //storing comments in entities
-    Entity commentEntity = new Entity("Comment");
-    commentEntity.setProperty("newComment", newComment);
-    commentEntity.setProperty("time", time); //so I can load the comments in an order based on time
+    Entity reviewEntity = new Entity("Review");
+    reviewEntity.setProperty("newReview", newReview);
+    reviewEntity.setProperty("time", time); //so I can load the comments in an order based on time
+    //will need to set other properties that I will want to filter
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(commentEntity);
+    datastore.put(reviewEntity);
 
     // Redirect back to the HTML page.
     response.sendRedirect("/index.html");

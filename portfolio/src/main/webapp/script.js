@@ -12,92 +12,57 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Adds a random greeting to the page.
- */
-function addRandomGreeting() {
-  const greetings =
-      ['I once had 7 wisdom teeth!','I have not ate a physical banana. Ever.',
-      'I lived on Capitol Hill in DC for a semester in high school! #SEGL',
-      'I am an Outside Hitter in volleyball.',
-      '"Nothing softens the wounds of your ancestors like the sweetness of your existence."'
-      ,'I did a summer homestay in Peru in high school!'];
-
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
-
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
-}
 
 
 /** returns comments directly without promises and adds them to the DOM 
  */
 
-async function getComments() {
+async function getReviews() {
   const response = await fetch('/data');
   console.log('Fetching data from server.');
-  const comments = await response.json();
-  console.log(comments);
-  const commentsElement = document.getElementById('comments-container'); //where I would like to post the comments that are fetched
-  console.log(commentsElement);
-  comments.forEach((comment) => {
-      commentsElement.appendChild(createCommentElement(comment));
+  const reviews = await response.json();
+  console.log(reviews);
+  const reviewsElement = document.getElementById('reviews-container'); //where I would like to post the reviews that are fetched
+  console.log(reviewsElement);
+  //looping through reviews left
+  reivews.forEach((review) => {
+      reviewsElement.appendChild(createReviewElement(review));
   })
 }
 
 
-/** Creates an element that represents a comment */
-function createCommentElement(comment) {
-  const commentElement = document.createElement('li');
-  commentElement.className = 'comment';
+/** Creates an element that represents a review */
+function createReviewElement(review) {
+  const reviewElement = document.createElement('li');
+  reviewElement.className = 'review';
 
+//smaller elements that make up the review
   const textElement = document.createElement('span');
-  textElement.innerText = comment.text;
+  textElement.innerText = review.text;
 
   const timeElement = document.createElement('time');
-  timeElement.innerText = comment.date;
-   
+  timeElement.innerText = review.date;
 
-  commentElement.appendChild(textElement);
-  commentElement.appendChild(timeElement);
+  const ageElement = document.createElement('age');
+  ageElement.innerText = review.age;
 
-  return commentElement;
+  const raceElement = document.createElement('race');
+  raceElement.innerText = reivew.race;
+
+  const conditionsElement = document.createElement('conditions');
+  conditionsElement.innerText = review.conditions;
+
+  const hospitalNameElement = document.createElement('hospital name');
+  hospitalNameElement.innerText = review.hospital;
+ 
+
+  reviewElement.appendChild(textElement);
+  reviewElement.appendChild(timeElement);
+  reviewElement.appendChild(ageElement);
+  reviewElement.appendChild(raceElement);
+  reviewElement.appendChild(conditionsElement);
+  reviewElement.appendChild(hospitalNameElement);
+
+  return reviewElement;
 }
 
-/** Creates a map and adds it to the page. */
-function createMap() {
-    console.log("entering map");
-    //creating a map with properties
-  const map = new google.maps.Map(
-      document.getElementById('map-rwanda'), {
-          mapTypeId: 'satellite',
-          draggable: true,
-      center: {lat: -1.944960, lng: 30.062040}, zoom: 11});
-
-    //creating markers for places I've been
-    const kigali = new google.maps.Marker({
-    position: {lat: -1.944960, lng: 30.062040},
-    map: map,
-    label: '3',
-    title: 'Kigali, Rwanda'
-  });
-    const trujillo = new google.maps.Marker({
-    position: {lat: -8.111840, lng: -79.028670},
-    map: map,
-    label: '1',
-    title: 'Trujillo, Peru'
-  });
-    const laHabana = new google.maps.Marker({
-    position: {lat: 23.113592, lng: -82.366592},
-    map: map,
-    label: '2',
-    title: 'Havana, Cuba'
-  });
-
-
-kigali.setMap(map);
-trujillo.setMap(map);
-laHabana.setMap(map);
-}
