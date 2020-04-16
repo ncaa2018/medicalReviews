@@ -25,34 +25,34 @@ async function getReviews() {
   const reviewsElement = document.getElementById('reviews-container'); //where I would like to post the reviews that are fetched
   console.log(reviewsElement);
   //looping through reviews left
-  reivews.forEach((review) => {
+  reviews.forEach((review) => {
       reviewsElement.appendChild(createReviewElement(review));
-  })
+  });
 }
 
 
 /** Creates an element that represents a review */
 function createReviewElement(review) {
-  const reviewElement = document.createElement('li');
+  const reviewElement = document.createElement('li'); //list item
   reviewElement.className = 'review';
 
 //smaller elements that make up the review
-  const textElement = document.createElement('span');
+  const textElement = document.createElement('span'); 
   textElement.innerText = review.text;
 
-  const timeElement = document.createElement('time');
+  const timeElement = document.createElement('span');
   timeElement.innerText = review.date;
 
-  const ageElement = document.createElement('age');
+  const ageElement = document.createElement('span');
   ageElement.innerText = review.age;
 
-  const raceElement = document.createElement('race');
-  raceElement.innerText = reivew.race;
+  const raceElement = document.createElement('span');
+  raceElement.innerText = review.race;
 
-  const conditionsElement = document.createElement('conditions');
+  const conditionsElement = document.createElement('span'); //maybe make a list later
   conditionsElement.innerText = review.conditions;
 
-  const hospitalNameElement = document.createElement('hospital name');
+  const hospitalNameElement = document.createElement('span');
   hospitalNameElement.innerText = review.hospital;
  
 

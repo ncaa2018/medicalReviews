@@ -38,8 +38,8 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-      // Query to retrieve all comments, sorted by most recent first.
-    Query query = new Query("Comment").addSort("time", SortDirection.DESCENDING);
+      // Query to retrieve all reviews, sorted by most recent first.
+    Query query = new Query("Review").addSort("time", SortDirection.DESCENDING);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
@@ -47,9 +47,18 @@ public class DataServlet extends HttpServlet {
     List<Review> reviews = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
       long id = entity.getKey().getId();
+      String text = (String) entity.getProperty("text");
       String newReview = (String) entity.getProperty("newReview");
       long time = (long) entity.getProperty("time");
-
+      int age = (int) entity.getProperty("age");
+    //   String race = (String) entity.getProperty("race");
+    //   String conditions = (String) entity.getProperty("conditions");
+    //   String hospitalName = (String) entity.getProperty("hospitalName");
+      
+      //int age = 10;
+      String race = "Black";
+      String conditions = "more stuff";
+      String hospitalName = "Memorial";
       Review review = new Review(id, text, time, age, race, conditions, hospitalName); //creating different entities/comments from datastore to then load
       reviews.add(review);
     }
@@ -70,11 +79,15 @@ public class DataServlet extends HttpServlet {
     String newReview = getParameter(request, "review", "");
     long time = System.currentTimeMillis();
 
+    System.out.println("getting input");
+    System.out.println(newReview);
+
     //storing comments in entities
     Entity reviewEntity = new Entity("Review");
-    reviewEntity.setProperty("newReview", newReview);
+    reviewEntity.setProperty("text", newReview);
     reviewEntity.setProperty("time", time); //so I can load the comments in an order based on time
     //will need to set other properties that I will want to filter
+    reviewEntity.setProperty("age",age);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(reviewEntity);

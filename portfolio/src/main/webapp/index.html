@@ -11,14 +11,15 @@
       <h1>Tell us about your experience</h1>
       <form action="/data" method="POST">
       <p>Add review:</p>
-      <textarea rows="10" cols="160" name="review"></textarea>
+      <input type="text" name="review" placeholder="Your Review"/>
+      <input type="age" name="age" placeholder="Age"/>
       <br/><br/>
       <input type="submit" />
       </form>
 
       <p> Reviews </p>
       <body onload="getReviews()">
-      <div id="reviewss-container"></div>
+      <div id="reviews-container"></div>
 
     </div>
   </body>

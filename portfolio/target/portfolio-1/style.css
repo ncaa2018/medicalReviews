@@ -25,11 +25,11 @@ img.rotate90 {
     padding: 5px; 
 }
 
-#comments-container {
+#reviews-container {
   list-style-type: none;
 }
 
-.comment {
+.review {
   border: thin solid black;
   display: flex;
   margin: 10px;
@@ -37,12 +37,6 @@ img.rotate90 {
   width: 600px;
 }
 
-.comment span {
+.review span {
   flex-grow: 1;
-}
-
-#map-rwanda {
-  border: thin solid black;
-  height: 500px;
-  width: 500px;
 }
